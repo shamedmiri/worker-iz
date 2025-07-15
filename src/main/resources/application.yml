@@ -1,0 +1,24 @@
+server:
+  port: 8082
+
+api:
+  urls:
+    TransfersChain: https://coreservicebus.izbank.ir/services/Pichak/TransfersChain
+    chequeHolderInquiry: https://coreservicebus.izbank.ir/services/Pichak/ChequeHolderInquiry
+    chequeIssuerInquiry: https://coreservicebus.izbank.ir/services/Pichak/ChequeIssuerInquiry
+    camunda: https://ouomnibpms.izbank.ir/engine-rest
+    deactivateHamoon: https://coreservicebus.izbank.ir/services/Pichak/Chakad
+    getCustomerInfo: https://coreservicebus.izbank.ir/services/Customer/GetCustomerByCustomerNumberFromReport?customerNumber=
+    getCustomerRelations: https://coreservicebus.izbank.ir/services/Customer/GetCustomerRelations
+    GetCustomerByNationalCodeFromReport: https://coreservicebus.izbank.ir/services/Customer/GetCustomerByNationalCodeFromReport?nationalCode=
+    #camunda: http://host.docker.internal:8081/engine-rest
+
+errors:
+  messages:
+    USER_NOT_FOUND: "کاربر پیدا نشد"
+    INVALID_EMAIL: "ایمیل نامعتبر است"
+    GENERAL_ERROR: "خطای عمومی رخ داده است"
+    CUSTOMER_IS_DE_ACTIVE: "مشتری غیرفعال می باشد"
+    SERVICE_IS_UNAVAILABLE: "سرویس در دسترس نمی باشد"
+
+
