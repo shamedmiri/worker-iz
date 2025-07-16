@@ -58,7 +58,7 @@ public class TransferChequeUpdateStatusService {
                 "IdentifierType", 1,
                 "ShahabId", shahabId
         );
-
+System.setOut(System.out);
         Map<String, Object> requestInfo = new HashMap<>();
         requestInfo.put("Holder", holder);
         requestInfo.put("Receivers", receiversList);
