@@ -66,6 +66,7 @@ public class ChequeIssuerInquiryService {
             result.put("Output", responseBody);
 
         } else {
+            System.out.println("Something went wrong");
             result.put("ErrorMessage", errorMessages.get("GENERAL_ERROR"));
         }
 
