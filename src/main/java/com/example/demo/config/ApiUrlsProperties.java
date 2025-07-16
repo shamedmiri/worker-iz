@@ -14,6 +14,16 @@ public class ApiUrlsProperties {
     private String transferCheque;
     private String receiverInquiryCheque;
 
+    public String getSaveChequeTransferStatus() {
+        return saveChequeTransferStatus;
+    }
+
+    public void setSaveChequeTransferStatus(String saveChequeTransferStatus) {
+        this.saveChequeTransferStatus = saveChequeTransferStatus;
+    }
+
+    private String saveChequeTransferStatus;
+
     public String getReceiverInquiryCheque() {
         return receiverInquiryCheque;
     }

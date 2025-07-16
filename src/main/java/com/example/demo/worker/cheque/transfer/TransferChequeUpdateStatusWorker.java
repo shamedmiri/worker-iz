@@ -2,7 +2,10 @@ package com.example.demo.worker.cheque.transfer;
 
 import com.example.demo.config.ApiUrlsProperties;
 import com.example.demo.error.ErrorMessagesProperties;
-import com.example.demo.service.cheque.transfer.ChequeInquiryReceiversService;
+import com.example.demo.service.cheque.transfer.TransferChequeService;
+import com.example.demo.service.cheque.transfer.TransferChequeUpdateStatusService;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.annotation.PostConstruct;
 import org.camunda.bpm.client.ExternalTaskClient;
 import org.camunda.spin.Spin;
@@ -10,24 +13,23 @@ import org.camunda.spin.json.SpinJsonNode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@Component
-public class ChequeInquiryReceiversWorker {
 
-    private static final String TOPIC_NAME = "ChequeInquiryReceiversWorker";
+@Component
+public class TransferChequeUpdateStatusWorker {
+
+    private static final String TOPIC_NAME = "TransferChequeUpdateStatusWorker";
     private static final String SUCCESS_CODE = "100";
 
     @Autowired
     private ErrorMessagesProperties errorMessages;
 
     private final ApiUrlsProperties properties;
-    private final ChequeInquiryReceiversService apiService;
+    private final TransferChequeUpdateStatusService apiService;
 
-    public ChequeInquiryReceiversWorker(ApiUrlsProperties properties, ChequeInquiryReceiversService apiService) {
+    public TransferChequeUpdateStatusWorker(ApiUrlsProperties properties, TransferChequeUpdateStatusService apiService) {
         this.properties = properties;
         this.apiService = apiService;
     }
@@ -42,10 +44,39 @@ public class ChequeInquiryReceiversWorker {
         client.subscribe(TOPIC_NAME)
                 .lockDuration(30000)
                 .handler((externalTask, externalTaskService) -> {
-                    String sayadId = externalTask.getVariable("sayadId");
-                    String receiversDataInput = externalTask.getVariable("ReceiverTable");
+                    String receivers = externalTask.getVariable("ReceiverTable");
+                    ObjectMapper objectMapper = new ObjectMapper();
+                    String ReceiverNationalCode="";
                     try {
-                        Map<String, Object> responseMap = apiService.callUserApi(sayadId, receiversDataInput);
+                        List<Map<String, Object>> receiversList = objectMapper.readValue(
+                                receivers,
+                                new TypeReference<List<Map<String, Object>>>() {}
+                        );
+                        for (Map<String, Object> receiver : receiversList) {
+                            ReceiverNationalCode = receiver.get("Identifier").toString()+",";
+                            // استفاده از fullName و ...
+                        }
+                    }catch (Exception e) {
+                        e.printStackTrace();
+                    }
+
+
+
+                    String sayadId = externalTask.getVariable("SayadId");
+                    String serialNumber = externalTask.getVariable("SerialNumber");
+                    String userIdentification = externalTask.getVariable("Identifier");
+                    String amount = externalTask.getVariable("Amount");
+                    String dueDate = externalTask.getVariable("DueDate");
+                    String description = externalTask.getVariable("Description");
+                    String issuerIbanNumber = externalTask.getVariable("IssuerIbanNumber");
+                    String receiverNationalCode = ReceiverNationalCode;
+                    String receiverName = externalTask.getVariable("ReceiverName");
+                    if(receiverName==null)
+                        receiverName="";
+
+                    try {
+                        Map<String, Object> responseMap = apiService.callUserApi(sayadId, serialNumber, userIdentification, amount, dueDate,
+                                description, issuerIbanNumber, receiverNationalCode, receiverName);
                         int statusCode = (int) responseMap.get("statusCode");
 
                         if (statusCode == 200 || statusCode == 201) {
@@ -69,21 +100,8 @@ public class ChequeInquiryReceiversWorker {
         String responseCode = jsonNode.prop("ResponseCode").toString();
 
         if (SUCCESS_CODE.equals(responseCode)) {
-            SpinJsonNode receiversArray = jsonNode.prop("ReceiversInfo");
-            List<Map<String, String>> receiverInfoList = new ArrayList<>();
-                String receiversName="";
-            for (int i = 0; i < receiversArray.elements().size(); i++) {
-                SpinJsonNode receiver = receiversArray.elements().get(i);
-                receiversName=receiversName+" "+receiver.prop("ReceiverName").toString();
-                Map<String, String> receiverMap = new HashMap<>();
-                receiverMap.put("Identifier", receiver.prop("Identifier").stringValue());
-                receiverMap.put("ReceiverName", receiver.prop("ReceiverName").stringValue());
-                receiverInfoList.add(receiverMap);
-            }
-
             Map<String, Object> variables = Map.of(
-                    "ReceiverTableList", receiverInfoList,
-                    "ReceiverName", receiversName
+                    "outputServiceTransfer", jsonNode
             );
             externalTaskService.complete(externalTask, variables);
         } else {

@@ -64,7 +64,7 @@ public class TransferChequeService {
         requestInfo.put("Receivers", receiversList);
         requestInfo.put("Signers", signersList);
         requestInfo.put("Description", description);
-        requestInfo.put("AcceptTransfer", 0);
+        requestInfo.put("AcceptTransfer", 1);
         requestInfo.put("ToIban", toIban);
         requestInfo.put("Reason", reason);
         requestInfo.put("SayadId", sayadId);
