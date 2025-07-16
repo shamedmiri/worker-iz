@@ -1,9 +1,9 @@
-package com.example.demo.worker.cheque;
+package com.example.demo.worker.cheque.transfer;
 
 import com.example.demo.config.ApiUrlsProperties;
 import com.example.demo.error.ErrorMessagesProperties;
-import com.example.demo.service.cheque.TransferChequeChainService;
-import com.example.demo.service.cheque.TransferChequeService;
+import com.example.demo.service.cheque.transfer.TransferChequeService;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.annotation.PostConstruct;
 import org.camunda.bpm.client.ExternalTaskClient;
 import org.camunda.spin.Spin;
@@ -11,9 +11,9 @@ import org.camunda.spin.json.SpinJsonNode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 
 @Component
 public class TransferChequeWorker {
@@ -42,18 +42,26 @@ public class TransferChequeWorker {
         client.subscribe(TOPIC_NAME)
                 .lockDuration(30000)
                 .handler((externalTask, externalTaskService) -> {
-                    String sayadId = externalTask.getVariable("sayadId");
-                    String identifier = externalTask.getVariable("idCode");
+                    String sayadId = externalTask.getVariable("SayadId");
+                    String identifier = externalTask.getVariable("Identifier");
                     String fullName = externalTask.getVariable("fullName");
                     String shahabId = externalTask.getVariable("shahabId");
-                    List<String> receivers = externalTask.getVariable("receivers");
-                    List<String> signers = externalTask.getVariable("signers");
-                    String description = externalTask.getVariable("description");
-                    String toIban = externalTask.getVariable("toIban");
-                    String reason = externalTask.getVariable("reason");
+                    String receivers = externalTask.getVariable("ReceiverTable");
+                    String signersListJson="";
+                    try {
+                        ObjectMapper mapper = new ObjectMapper();
+                        List<Map<String, Object>> signerList = (List<Map<String, Object>>) externalTask.getVariable("signerList");
+                        signersListJson= mapper.writeValueAsString(signerList);
+
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                    String description = externalTask.getVariable("TransferDescription");
+                    String toIban = externalTask.getVariable("ToIban");
+                    String reason = externalTask.getVariable("Reason");
 
                     try {
-                        Map<String, Object> responseMap = apiService.callUserApi(fullName, identifier, shahabId, receivers, signers,
+                        Map<String, Object> responseMap = apiService.callUserApi(fullName, identifier, shahabId, receivers, signersListJson,
                                 description, toIban, reason, sayadId);
                         int statusCode = (int) responseMap.get("statusCode");
 
@@ -79,7 +87,7 @@ public class TransferChequeWorker {
 
         if (SUCCESS_CODE.equals(responseCode)) {
             Map<String, Object> variables = Map.of(
-                    "outputServiceChain", jsonNode.prop("chain").toString()
+                    "outputServiceTransfer", jsonNode
             );
             externalTaskService.complete(externalTask, variables);
         } else {

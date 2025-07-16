@@ -12,6 +12,15 @@ public class ApiUrlsProperties {
     private String getCustomerRelations;
     private String GetCustomerByNationalCodeFromReport;
     private String transferCheque;
+    private String receiverInquiryCheque;
+
+    public String getReceiverInquiryCheque() {
+        return receiverInquiryCheque;
+    }
+
+    public void setReceiverInquiryCheque(String receiverInquiryCheque) {
+        this.receiverInquiryCheque = receiverInquiryCheque;
+    }
 
     public String getTransferCheque() {
         return transferCheque;

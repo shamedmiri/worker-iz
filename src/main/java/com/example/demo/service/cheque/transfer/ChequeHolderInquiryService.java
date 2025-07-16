@@ -1,4 +1,4 @@
-package com.example.demo.service.cheque;
+package com.example.demo.service.cheque.transfer;
 
 import com.example.demo.config.ApiUrlsProperties;
 import com.example.demo.error.ErrorMessagesProperties;

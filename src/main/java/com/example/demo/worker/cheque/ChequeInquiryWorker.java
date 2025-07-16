@@ -2,7 +2,7 @@ package com.example.demo.worker.cheque;
 
 import com.example.demo.config.ApiUrlsProperties;
 import com.example.demo.error.ErrorMessagesProperties;
-import com.example.demo.service.cheque.ChequeHolderInquiryService;
+import com.example.demo.service.cheque.transfer.ChequeHolderInquiryService;
 import com.example.demo.service.cheque.ChequeIssuerInquiryService;
 import org.camunda.bpm.client.ExternalTaskClient;
 import org.camunda.spin.Spin;

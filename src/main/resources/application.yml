@@ -12,6 +12,7 @@ api:
     getCustomerRelations: https://coreservicebus.izbank.ir/services/Customer/GetCustomerRelations
     GetCustomerByNationalCodeFromReport: https://coreservicebus.izbank.ir/services/Customer/GetCustomerByNationalCodeFromReport?nationalCode=
     transferCheque: https://coreservicebus.izbank.ir/services/Pichak/Transfer
+    receiverInquiryCheque: https://coreservicebus.izbank.ir/services/Pichak/ReceiverInquiry
     #camunda: http://host.docker.internal:8081/engine-rest
 
 errors:

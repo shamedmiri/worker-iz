@@ -1,7 +1,8 @@
-package com.example.demo.service.cheque;
+package com.example.demo.service.cheque.transfer;
 
 import com.example.demo.config.ApiUrlsProperties;
 import com.example.demo.error.ErrorMessagesProperties;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -31,15 +32,25 @@ public class TransferChequeService {
     }
 
     public Map<String, Object> callUserApi( String fullName, String identifier, String shahabId,
-                                           List<String> receivers, List<String> signers, String description,
+                                           String receivers, String signers, String description,
                                            String toIban, String reason, String sayadId) throws Exception {
         return callApi(urls.getTransferCheque(), fullName, identifier, shahabId, receivers, signers,
                 description, toIban, reason, sayadId);
     }
 
     private Map<String, Object> callApi(String url, String fullName, String identifier, String shahabId,
-                                        List<String> receivers, List<String> signers, String description,
+                                        String receivers, String signers, String description,
                                         String toIban, String reason, String sayadId) throws Exception {
+        ObjectMapper objectMapper = new ObjectMapper();
+
+        List<Map<String, Object>> receiversList = objectMapper.readValue(
+                receivers,
+                new TypeReference<List<Map<String, Object>>>() {}
+        );
+        List<Map<String, Object>> signersList = objectMapper.readValue(
+                signers,
+                new TypeReference<List<Map<String, Object>>>() {}
+        );
 
         Map<String, Object> holder = Map.of(
                 "FullName", fullName,
@@ -50,8 +61,8 @@ public class TransferChequeService {
 
         Map<String, Object> requestInfo = new HashMap<>();
         requestInfo.put("Holder", holder);
-        requestInfo.put("Receivers", receivers);
-        requestInfo.put("Signers", signers);
+        requestInfo.put("Receivers", receiversList);
+        requestInfo.put("Signers", signersList);
         requestInfo.put("Description", description);
         requestInfo.put("AcceptTransfer", 0);
         requestInfo.put("ToIban", toIban);
@@ -77,7 +88,6 @@ public class TransferChequeService {
                 .build();
 
         HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
-
         Map<String, Object> result = new HashMap<>();
         int statusCode = response.statusCode();
         result.put("statusCode", statusCode);
