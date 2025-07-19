@@ -14,6 +14,7 @@ api:
     transferCheque: https://coreservicebus.izbank.ir/services/Pichak/Transfer
     receiverInquiryCheque: https://coreservicebus.izbank.ir/services/Pichak/ReceiverInquiry
     saveChequeTransferStatus: https://coreservicebus.izbank.ir/services/Pichak/savestatus
+    ownerAcceptChequeStatus: https://coreservicebus.izbank.ir/services/Pichak/OwnerChequeStatus
     #camunda: http://host.docker.internal:8081/engine-rest
 
 errors:

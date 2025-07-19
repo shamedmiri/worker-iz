@@ -14,6 +14,16 @@ public class ApiUrlsProperties {
     private String transferCheque;
     private String receiverInquiryCheque;
 
+    public String getOwnerAcceptChequeStatus() {
+        return ownerAcceptChequeStatus;
+    }
+
+    public void setOwnerAcceptChequeStatus(String ownerAcceptChequeStatus) {
+        this.ownerAcceptChequeStatus = ownerAcceptChequeStatus;
+    }
+
+    private String ownerAcceptChequeStatus;
+
     public String getSaveChequeTransferStatus() {
         return saveChequeTransferStatus;
     }

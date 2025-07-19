@@ -1,4 +1,4 @@
-package com.example.demo.service.cheque;
+package com.example.demo.service.cheque.transfer;
 
 import com.example.demo.config.ApiUrlsProperties;
 import com.example.demo.error.ErrorMessagesProperties;
@@ -13,50 +13,42 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Service
-public class DeactiveHamoonService {
+public class ChequeIssuerInquiryService {
     @Autowired
     private ErrorMessagesProperties errorMessages;
 
     private final HttpClient httpClient;
     private final ApiUrlsProperties urls;
 
-    public DeactiveHamoonService(HttpClient httpClient, ApiUrlsProperties urls) {
+    public ChequeIssuerInquiryService(HttpClient httpClient, ApiUrlsProperties urls) {
         this.httpClient = httpClient;
         this.urls = urls;
     }
 
-    public Map<String, Object> callUserApi(String shahabId,  String idCode, String requestDateTime, String customerNumber) throws Exception {
-        return callApi(urls.getDeactivateHamoon(), shahabId,idCode,requestDateTime, customerNumber );
+    public Map<String, Object> callUserApi(String sayadId, String identifier, String shahabId) throws Exception {
+        return callApi(urls.getChequeIssuerInquiry(), sayadId, identifier, shahabId);
     }
 
 
-    private Map<String, Object> callApi(String url,  String shahabId, String idCode, String requestDateTime, String customerNumber) throws Exception {
+    private Map<String, Object> callApi(String url, String sayadId, String identifier, String shahabId) throws Exception {
         Map<String, Object> result = new HashMap<>();
         String jsonRequest = String.format("""
                 {
-                  "RequestInfo": {
-                    "EndUrl": "customer/deactivation",
-                    "Type": "Dectivation",
-                    "SayadId": "",
-                    "Input": {
-                      "tokenType": 1,
-                      "customer": {
-                        "shahabId": "%s",
-                        "idCode": "%s",
-                        "idType": 1
+                 "RequestInfo":{
+                    "SayadId": "%s",
+                    "Identifier": "%s",
+                    "IdentifierType": 1,
+                    "ShahabId": "%s"
                       },
-                      "legalStamp": 0,
-                      "bankCode": "69",
-                      "requestDateTime": "%s"
-                    }
-                  },
-                  "Channel": 1,
-                  "BranchCode": 0,
-                  "UserName": "",
-                  "AuthStatus": 1,
-                  "CustomerNumber": "%s"
-                }
-                """, shahabId, idCode, requestDateTime, customerNumber);
+                	"Channel": 3,
+                	"BranchCode": 101,
+                	"UserName": "19506",
+                	"AuthStatus": 4,
+                	"CustomerNumber": 0
+                 }
+                
+                
+                """, sayadId, identifier, shahabId);
 
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create(url))

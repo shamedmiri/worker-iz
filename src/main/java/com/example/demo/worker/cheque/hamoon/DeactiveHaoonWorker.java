@@ -1,7 +1,7 @@
-package com.example.demo.worker.cheque;
+package com.example.demo.worker.cheque.hamoon;
 import com.example.demo.config.ApiUrlsProperties;
 import com.example.demo.error.ErrorMessagesProperties;
-import com.example.demo.service.cheque.DeactiveHamoonService;
+import com.example.demo.service.cheque.hamoon.DeactiveHamoonService;
 import com.example.demo.utils.ConvertDate;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;

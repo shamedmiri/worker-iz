@@ -1,5 +1,4 @@
 package com.example.demo.worker.cheque.transfer;
-
 import com.example.demo.config.ApiUrlsProperties;
 import com.example.demo.error.ErrorMessagesProperties;
 import com.example.demo.service.cheque.transfer.ChequeHolderInquiryService;

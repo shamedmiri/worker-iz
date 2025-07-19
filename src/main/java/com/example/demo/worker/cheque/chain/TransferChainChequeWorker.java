@@ -1,10 +1,8 @@
-package com.example.demo.worker.cheque;
+package com.example.demo.worker.cheque.chain;
 
 import com.example.demo.config.ApiUrlsProperties;
 import com.example.demo.error.ErrorMessagesProperties;
-import com.example.demo.service.cheque.TransferChequeChainService;
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.example.demo.service.cheque.chain.TransferChequeChainService;
 import org.camunda.bpm.client.ExternalTaskClient;
 import org.camunda.spin.Spin;
 import org.camunda.spin.json.SpinJsonNode;
