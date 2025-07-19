@@ -13,6 +13,24 @@ public class ApiUrlsProperties {
     private String GetCustomerByNationalCodeFromReport;
     private String transferCheque;
     private String receiverInquiryCheque;
+    private String issuedChequeKartabl;
+    private String receiverChequeKartabl;
+
+    public String getIssuedChequeKartabl() {
+        return issuedChequeKartabl;
+    }
+
+    public String getReceiverChequeKartabl() {
+        return receiverChequeKartabl;
+    }
+
+    public void setReceiverChequeKartabl(String receiverChequeKartabl) {
+        this.receiverChequeKartabl = receiverChequeKartabl;
+    }
+
+    public void setIssuedChequeKartabl(String issuedChequeKartabl) {
+        this.issuedChequeKartabl = issuedChequeKartabl;
+    }
 
     public String getOwnerAcceptChequeStatus() {
         return ownerAcceptChequeStatus;
