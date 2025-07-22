@@ -55,6 +55,7 @@ public class SelectChequeKartablWorker {
                                     result.put("SayadId", item.prop("sayadId").toString());
                                     result.put("serialNo", item.prop("serialNo").toString());
                                     externalTaskService.complete(externalTask, result);
+                                    System.out.println(simplified.toString());
                                 }
 
                             }
