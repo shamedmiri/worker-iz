@@ -2,6 +2,7 @@ package com.example.demo.worker.cheque.accept;
 
 import com.example.demo.config.ApiUrlsProperties;
 import com.example.demo.error.ErrorMessagesProperties;
+import com.example.demo.service.cheque.accept.AcceptChequeService;
 import com.example.demo.service.cheque.transfer.TransferChequeService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.annotation.PostConstruct;
@@ -25,9 +26,9 @@ public class AcceptChequeWorker {
     private ErrorMessagesProperties errorMessages;
 
     private final ApiUrlsProperties properties;
-    private final TransferChequeService apiService;
+    private final AcceptChequeService apiService;
 
-    public AcceptChequeWorker(ApiUrlsProperties properties, TransferChequeService apiService) {
+    public AcceptChequeWorker(ApiUrlsProperties properties, AcceptChequeService apiService) {
         this.properties = properties;
         this.apiService = apiService;
     }
@@ -46,23 +47,16 @@ public class AcceptChequeWorker {
                     String identifier = externalTask.getVariable("Identifier");
                     String fullName = externalTask.getVariable("fullName");
                     String shahabId = externalTask.getVariable("shahabId");
-                    String receivers = externalTask.getVariable("ReceiverTable");
-                    String signersListJson="";
-                    try {
-                        ObjectMapper mapper = new ObjectMapper();
-                        List<Map<String, Object>> signerList = (List<Map<String, Object>>) externalTask.getVariable("signerList");
-                        signersListJson= mapper.writeValueAsString(signerList);
-
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
+                    String agentIdentifier = externalTask.getVariable("agentIdentifier");
+                    String agentFullName = externalTask.getVariable("agentFullName");
+                    String agentifierType = externalTask.getVariable("agentifierType");
+                    String agentShahabId = externalTask.getVariable("agentShahabId");
                     String description = externalTask.getVariable("TransferDescription");
                     String toIban = externalTask.getVariable("ToIban");
-                    String reason = externalTask.getVariable("Reason");
 
                     try {
-                        Map<String, Object> responseMap = apiService.callUserApi(fullName, identifier, shahabId, receivers, signersListJson,
-                                description, toIban, reason, sayadId);
+                        Map<String, Object> responseMap = apiService.callUserApi(fullName, identifier, shahabId, agentIdentifier, agentFullName, agentifierType, agentShahabId,
+                                description, toIban, sayadId);
                         int statusCode = (int) responseMap.get("statusCode");
 
                         if (statusCode == 200 || statusCode == 201) {
