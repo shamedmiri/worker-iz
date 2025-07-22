@@ -16,7 +16,15 @@ public class ApiUrlsProperties {
     private String issuedChequeKartabl;
     private String receiverChequeKartabl;
     private String pichakAccept;
+    private String caStatus;
 
+    public String getCaStatus() {
+        return caStatus;
+    }
+
+    public void setCaStatus(String caStatus) {
+        this.caStatus = caStatus;
+    }
 
     public String getPichakAccept() {
         return pichakAccept;

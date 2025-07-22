@@ -18,6 +18,7 @@ api:
     receiverChequeKartabl: https://coreservicebus.izbank.ir/services/Pichak/chakad
     issuedChequeKartabl: https://iws.izbank.ir/Cheque/Chakad/GetRequests?CustomerNumber=
     pichakAccept: https://coreservicebus.izbank.ir/services/Pichak/Accept
+    caStatus: https://coreservicebus.izbank.ir/services/ca/Status
     #camunda: http://host.docker.internal:8081/engine-rest
 
 errors:

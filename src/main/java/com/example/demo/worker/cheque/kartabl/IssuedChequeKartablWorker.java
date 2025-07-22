@@ -6,6 +6,7 @@ import com.example.demo.service.cheque.kartabl.IssuedChequeService;
 import jakarta.annotation.PostConstruct;
 import org.camunda.bpm.client.ExternalTaskClient;
 import org.camunda.bpm.client.task.ExternalTaskService;
+import org.camunda.spin.SpinList;
 import org.camunda.spin.json.SpinJsonNode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -76,7 +77,17 @@ public class IssuedChequeKartablWorker {
                                 Map<String, Object> obj = new HashMap<>();
                                 obj.put("SayadId", item.prop("SayadId").stringValue());
                                 obj.put("SerialNumber", item.prop("SerialNumber").stringValue());
+                                obj.put("TransactionId", item.prop("TransactionId").stringValue());
                                 obj.put("ChequeMedia", item.prop("ChequeMedia").value());
+                                SpinList<SpinJsonNode> xx = item.prop("Receivers").elements();
+                                List<Map<String, Object>> Receivers = new ArrayList<>();
+                                Map<String, Object> objReceivers = new HashMap<>();
+                                for (int i = 0; i < xx.size() ; i++) {
+                                    objReceivers.put("Identifier",xx.get(i).prop("Identifier").stringValue());
+                                    objReceivers.put("FullName",xx.get(i).prop("FullName").stringValue());
+                                }
+                                Receivers.add(objReceivers);
+                                obj.put("ReceiversList", Receivers);
                                 obj.put("select", false);
                                 simplifiedObjects.add(obj);
                             }

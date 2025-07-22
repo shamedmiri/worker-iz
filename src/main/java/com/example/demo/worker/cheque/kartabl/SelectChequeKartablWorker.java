@@ -55,7 +55,6 @@ public class SelectChequeKartablWorker {
                                     result.put("SayadId", item.prop("sayadId").toString());
                                     result.put("serialNo", item.prop("serialNo").toString());
                                     externalTaskService.complete(externalTask, result);
-                                    System.out.println(simplified.toString()+"");
                                 }
 
                             }
@@ -71,9 +70,13 @@ public class SelectChequeKartablWorker {
                                 SpinJsonNode simplified = JSON("{ }");
                                 boolean seletcItem= item.prop("select").boolValue();
                                 if (seletcItem) {
+                                    String responseRaw = item.prop("ReceiversList").elements().toString();
+                                    SpinJsonNode requests = JSON(responseRaw);
                                     Map<String, Object> result = new HashMap<>();
                                     result.put("SayadId", item.prop("SayadId").toString());
-                                    result.put("SerialNumber", item.prop("SerialNumber").toString());
+                                    result.put("ReceiversList", requests.toString());
+                                    result.put("TransactionId", item.prop("TransactionId").stringValue());
+                                    result.put("SerialNumber", item.prop("SerialNumber").stringValue());
                                     externalTaskService.complete(externalTask, result);
                                 }
                             }
