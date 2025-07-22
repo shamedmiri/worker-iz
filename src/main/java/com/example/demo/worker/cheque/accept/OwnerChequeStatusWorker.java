@@ -69,7 +69,7 @@ public class OwnerChequeStatusWorker {
     private void handleSuccessResponse(org.camunda.bpm.client.task.ExternalTaskService externalTaskService,
                                        org.camunda.bpm.client.task.ExternalTask externalTask,
                                        Map<String, Object> responseMap) {
-
+        System.out.println("--");
         SpinJsonNode jsonNode = Spin.JSON(responseMap.get("Output"));
         String responseCode = jsonNode.prop("ResponseCode").toString();
 
