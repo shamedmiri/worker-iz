@@ -46,7 +46,7 @@ public class OwnerChequeStatusWorker {
 
 
                     String sayadId = externalTask.getVariable("sayadId");
-                    String idCode = externalTask.getVariable("idCode");
+                    String idCode = externalTask.getVariable("Identifier");
 
 
                     try {

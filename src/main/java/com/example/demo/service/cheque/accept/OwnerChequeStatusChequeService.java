@@ -48,7 +48,7 @@ public class OwnerChequeStatusChequeService {
         Map<String, Object> bodyMap = new HashMap<>();
         bodyMap.put("RequestInfo", requestInfo);
         bodyMap.put("Channel", 1);
-        bodyMap.put("UserName", "123");
+        bodyMap.put("UserName", "");
         bodyMap.put("BranchCode", 101);
         bodyMap.put("CustomerNumber", 133);
         bodyMap.put("AuthStatus", 0);
