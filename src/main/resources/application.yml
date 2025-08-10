@@ -17,8 +17,11 @@ api:
     ownerAcceptChequeStatus: https://coreservicebus.izbank.ir/services/Pichak/OwnerChequeStatus
     receiverChequeKartabl: https://coreservicebus.izbank.ir/services/Pichak/chakad
     issuedChequeKartabl: https://iws.izbank.ir/Cheque/Chakad/GetRequests?CustomerNumber=
+    saveIssueRequest: https://iws.izbank.ir/Cheque/chakad/SaveIssueRequest
     pichakAccept: https://coreservicebus.izbank.ir/services/Pichak/Accept
     caStatus: https://coreservicebus.izbank.ir/services/ca/Status
+    caSign: https://coreservicebus.izbank.ir/services/ca/Sign
+    GetChequeInquiry: https://coreservicebus.izbank.ir/services/sayad2/GetChequeInquiry?chequeSerial=
     #camunda: http://host.docker.internal:8081/engine-rest
 
 errors:

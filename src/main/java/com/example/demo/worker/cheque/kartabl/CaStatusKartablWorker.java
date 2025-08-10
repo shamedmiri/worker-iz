@@ -65,7 +65,7 @@ public class CaStatusKartablWorker {
                         }
                         int statusCode1 = outputJson.prop("Status").prop("StatusCode").prop("Value").numberValue().intValue();
 
-                        if (statusCode1==100) {
+                        if (statusCode1==502) {
                             Map<String, Object> result = new HashMap<>();
                             result.put("Sign",true);
                             externalTaskService.complete(externalTask, result);

@@ -17,6 +17,34 @@ public class ApiUrlsProperties {
     private String receiverChequeKartabl;
     private String pichakAccept;
     private String caStatus;
+    private String GetChequeInquiry;
+    private String caSign;
+    private String saveIssueRequest;
+
+    public String getSaveIssueRequest() {
+        return saveIssueRequest;
+    }
+
+    public void setSaveIssueRequest(String saveIssueRequest) {
+        this.saveIssueRequest = saveIssueRequest;
+    }
+
+    public String getCaSign() {
+        return caSign;
+    }
+
+    public void setCaSign(String caSign) {
+        this.caSign = caSign;
+    }
+
+    public String getGetChequeInquiry() {
+        return GetChequeInquiry;
+    }
+
+    public void setGetChequeInquiry(String getChequeInquiry) {
+        GetChequeInquiry = getChequeInquiry;
+    }
+
 
     public String getCaStatus() {
         return caStatus;

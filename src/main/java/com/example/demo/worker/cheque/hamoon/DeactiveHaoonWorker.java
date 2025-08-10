@@ -30,12 +30,12 @@ public class DeactiveHaoonWorker {
                 .baseUrl(properties.getCamunda())
                 .asyncResponseTimeout(20000)
                 .build();
-        String disableHamoonWorker = "disableHamoonWorker";
+        String disableHamoonWorker = "disableHamoonWorkerVer2";
         client.subscribe(disableHamoonWorker) // تاپیک جدید در BPMN
                 .lockDuration(30000)
                 .handler((externalTask, externalTaskService) -> {
                     String customerNumber = externalTask.getVariable("customerNumber");
-                    String idCode = externalTask.getVariable("idCode");
+                    String idCode = externalTask.getVariable("Identifier");
                     String shahabId = externalTask.getVariable("shahabId");
                     ConvertDate convertDate=new ConvertDate();
                     String requestDate = convertDate.currentDateShamsi();

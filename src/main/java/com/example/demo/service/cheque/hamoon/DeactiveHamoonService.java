@@ -64,7 +64,7 @@ public class DeactiveHamoonService {
                 .header("Content-Type", "application/json")
                 .POST(HttpRequest.BodyPublishers.ofString(jsonRequest))
                 .build();
-
+        System.out.println(jsonRequest);
         HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
         int statusCode = response.statusCode();
         result.put("statusCode", statusCode);
