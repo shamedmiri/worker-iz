@@ -22,6 +22,8 @@ api:
     caStatus: https://coreservicebus.izbank.ir/services/ca/Status
     caSign: https://coreservicebus.izbank.ir/services/ca/Sign
     GetChequeInquiry: https://coreservicebus.izbank.ir/services/sayad2/GetChequeInquiry?chequeSerial=
+    postalCodeInquiry: https://coreservicebus.izbank.ir/services/inquiry/PostalInquiry?postalCode=
+    saverequestCheque: https://iws.izbank.ir/Cheque/request/saverequest
     #camunda: http://host.docker.internal:8081/engine-rest
 
 errors:
@@ -31,5 +33,6 @@ errors:
     GENERAL_ERROR: "خطای عمومی رخ داده است"
     CUSTOMER_IS_DE_ACTIVE: "مشتری غیرفعال می باشد"
     SERVICE_IS_UNAVAILABLE: "سرویس در دسترس نمی باشد"
+    ERROR_SERVICE: "متاسفانه خطایی رخ داده است لطفا دقایقی دیگر تلاش نمایید"
 
 

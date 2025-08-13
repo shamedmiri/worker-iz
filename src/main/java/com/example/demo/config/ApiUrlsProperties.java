@@ -1,5 +1,6 @@
 package com.example.demo.config;
 
+
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 @ConfigurationProperties(prefix = "api.urls")
@@ -20,6 +21,25 @@ public class ApiUrlsProperties {
     private String GetChequeInquiry;
     private String caSign;
     private String saveIssueRequest;
+    private String postalCodeInquiry;
+    private String saverequestCheque;
+
+
+    public String getSaverequestCheque() {
+        return saverequestCheque;
+    }
+
+    public void setSaverequestCheque(String saverequestCheque) {
+        this.saverequestCheque = saverequestCheque;
+    }
+
+    public String getPostalCodeInquiry() {
+        return postalCodeInquiry;
+    }
+
+    public void setPostalCodeInquiry(String postalCodeInquiry) {
+        this.postalCodeInquiry = postalCodeInquiry;
+    }
 
     public String getSaveIssueRequest() {
         return saveIssueRequest;
