@@ -23,7 +23,15 @@ public class ApiUrlsProperties {
     private String saveIssueRequest;
     private String postalCodeInquiry;
     private String saverequestCheque;
+    private String sendSMS;
 
+    public String getSendSMS() {
+        return sendSMS;
+    }
+
+    public void setSendSMS(String sendSMS) {
+        this.sendSMS = sendSMS;
+    }
 
     public String getSaverequestCheque() {
         return saverequestCheque;

@@ -24,6 +24,7 @@ api:
     GetChequeInquiry: https://coreservicebus.izbank.ir/services/sayad2/GetChequeInquiry?chequeSerial=
     postalCodeInquiry: https://coreservicebus.izbank.ir/services/inquiry/PostalInquiry?postalCode=
     saverequestCheque: https://iws.izbank.ir/Cheque/request/saverequest
+    sendSMS: https://coreservicebus.izbank.ir/services/Notification/Sendsms
     #camunda: http://host.docker.internal:8081/engine-rest
 
 errors:
