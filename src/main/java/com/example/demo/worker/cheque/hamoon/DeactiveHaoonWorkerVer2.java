@@ -1,26 +1,29 @@
 package com.example.demo.worker.cheque.hamoon;
+
 import com.example.demo.config.ApiUrlsProperties;
 import com.example.demo.error.ErrorMessagesProperties;
 import com.example.demo.service.cheque.hamoon.DeactiveHamoonService;
 import com.example.demo.utils.ConvertDate;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import jakarta.annotation.PostConstruct;
 import org.camunda.bpm.client.ExternalTaskClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import jakarta.annotation.PostConstruct;
+
 import java.time.OffsetDateTime;
 import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.Map;
+
 @Component
-public class DeactiveHaoonWorker {
+public class DeactiveHaoonWorkerVer2 {
     @Autowired
     private ErrorMessagesProperties errorMessages;
     private final ApiUrlsProperties properties;
     private final DeactiveHamoonService apiService;
-    public DeactiveHaoonWorker(ApiUrlsProperties properties, DeactiveHamoonService apiService) {
+    public DeactiveHaoonWorkerVer2(ApiUrlsProperties properties, DeactiveHamoonService apiService) {
         this.properties = properties;
         this.apiService = apiService;
     }
@@ -30,7 +33,7 @@ public class DeactiveHaoonWorker {
                 .baseUrl(properties.getCamunda())
                 .asyncResponseTimeout(20000)
                 .build();
-        String disableHamoonWorker = "disableHamoonWorkerVer2";
+        String disableHamoonWorker = "disableHamoonWorkerVer3";
         client.subscribe(disableHamoonWorker) // تاپیک جدید در BPMN
                 .lockDuration(30000)
                 .handler((externalTask, externalTaskService) -> {
