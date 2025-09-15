@@ -25,6 +25,12 @@ api:
     postalCodeInquiry: https://coreservicebus.izbank.ir/services/inquiry/PostalInquiry?postalCode=
     saverequestCheque: https://iws.izbank.ir/Cheque/request/saverequest
     sendSMS: https://coreservicebus.izbank.ir/services/Notification/Sendsms
+    saverequestLoan: https://iws.izbank.ir/loan/request/saverequest
+    requestGetPlanDetail: https://iws.izbank.ir/loan/request/GetPlanDetail
+    requestGetPlanDocuments: https://iws.izbank.ir/loan/request/GetPlanDocuments?planId=
+    SaveRequestGuarantors: https://iws.izbank.ir/loan/request/SaveRequestGuarantors?RequestGuarantors=
+    updatesignedcontract: https://iws.izbank.ir/loan/request/updatesignedcontract
+    SaveStatusHistory: https://iws.izbank.ir/db/request/SaveStatusHistory
     #camunda: http://host.docker.internal:8081/engine-rest
 
 errors:

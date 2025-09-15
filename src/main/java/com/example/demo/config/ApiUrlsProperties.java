@@ -21,9 +21,31 @@ public class ApiUrlsProperties {
     private String GetChequeInquiry;
     private String caSign;
     private String saveIssueRequest;
+    private String saverequestLoan;
+    private String requestGetPlanDetail;
     private String postalCodeInquiry;
     private String saverequestCheque;
     private String sendSMS;
+    private String requestGetPlanDocuments;
+    private String SaveRequestGuarantors;
+    private String updatesignedcontract;
+    private String SaveStatusHistory;
+
+    public String getSaveStatusHistory() {return SaveStatusHistory;}
+
+    public void setSaveStatusHistory(String saveStatusHistory) {SaveStatusHistory = saveStatusHistory;}
+
+    public String getUpdatesignedcontract() {return updatesignedcontract;}
+
+    public void setUpdatesignedcontract(String updatesignedcontract) {this.updatesignedcontract = updatesignedcontract;}
+
+    public String getSaveRequestGuarantors() {return SaveRequestGuarantors;}
+
+    public void setSaveRequestGuarantors(String saveRequestGuarantors) {SaveRequestGuarantors = saveRequestGuarantors;}
+
+    public String getRequestGetPlanDocuments() { return requestGetPlanDocuments; }
+
+    public void setRequestGetPlanDocuments(String requestGetPlanDocuments) { this.requestGetPlanDocuments = requestGetPlanDocuments; }
 
     public String getSendSMS() {
         return sendSMS;
@@ -32,6 +54,14 @@ public class ApiUrlsProperties {
     public void setSendSMS(String sendSMS) {
         this.sendSMS = sendSMS;
     }
+
+    public String getRequestGetPlanDetail() {return requestGetPlanDetail;}
+
+    public void setRequestGetPlanDetail(String requestGetPlanDetail) {this.requestGetPlanDetail = requestGetPlanDetail;}
+
+    public String getSaverequestLoan() {return saverequestLoan;}
+
+    public void setSaverequestLoan(String saverequestLoan) {this.saverequestLoan = saverequestLoan;}
 
     public String getSaverequestCheque() {
         return saverequestCheque;
