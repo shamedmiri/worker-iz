@@ -19,7 +19,7 @@ api:
     issuedChequeKartabl: https://iws.izbank.ir/Cheque/Chakad/GetRequests?CustomerNumber=
     saveIssueRequest: https://iws.izbank.ir/Cheque/chakad/SaveIssueRequest
     pichakAccept: https://coreservicebus.izbank.ir/services/Pichak/Accept
-    caStatus: https://coreservicebus.izbank.ir/services/ca/Status
+    caStatus: https://coreservicebus.izbank.ir/services/ca/Statusu
     caSign: https://coreservicebus.izbank.ir/services/ca/Sign
     GetChequeInquiry: https://coreservicebus.izbank.ir/services/sayad2/GetChequeInquiry?chequeSerial=
     postalCodeInquiry: https://coreservicebus.izbank.ir/services/inquiry/PostalInquiry?postalCode=
