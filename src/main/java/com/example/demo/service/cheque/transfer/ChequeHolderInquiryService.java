@@ -25,29 +25,29 @@ public class ChequeHolderInquiryService {
         this.urls = urls;
     }
 
-    public Map<String, Object> callUserApi(String sayadId, String identifier) throws Exception {
-        return callApi(urls.getChequeHolderInquiry(), sayadId, identifier);
+    public Map<String, Object> callUserApi(String sayadId, String shahabId, String identifier) throws Exception {
+        return callApi(urls.getChequeHolderInquiry(), sayadId,shahabId, identifier);
     }
 
 
-    private Map<String, Object> callApi(String url, String sayadId, String identifier) throws Exception {
+    private Map<String, Object> callApi(String url, String sayadId, String shahabId,String identifier) throws Exception {
         Map<String, Object> result = new HashMap<>();
         String jsonRequest = String.format("""
-                {
-                 "RequestInfo":{
-                    "SayadId": "%s",
-                    "Identifier": "%s",
-                    "IdentifierType": 1
-                      },
-                	"Channel": 3,
-                	"BranchCode": 101,
-                	"UserName": "19506",
-                	"AuthStatus": 4,
-                	"CustomerNumber": 0
-                 }
-                
-                
-                """, sayadId, identifier);
+            {
+             "RequestInfo":{
+                "SayadId": "%s",               
+                "Identifier": "%s",
+                 "ShahabId": "%s",
+                "IdentifierType": 1
+                  },
+            	"Channel":1,
+            	"BranchCode": 690000,
+            	"UserName": "",
+            	"AuthStatus": 1
+             }
+             """,
+                sayadId, shahabId, identifier); // اینجا مقادیر رو پاس بده
+
 
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create(url))

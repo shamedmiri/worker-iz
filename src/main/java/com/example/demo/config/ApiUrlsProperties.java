@@ -30,6 +30,21 @@ public class ApiUrlsProperties {
     private String SaveRequestGuarantors;
     private String updatesignedcontract;
     private String SaveStatusHistory;
+    private String GetRequestLoan;
+    private String GetLoanPromissory;
+    private String SanaInquiry;
+
+    public String getSanaInquiry() {return SanaInquiry;}
+
+    public void setSanaInquiry(String sanaInquiry) {SanaInquiry = sanaInquiry;}
+
+    public String getGetLoanPromissory() {return GetLoanPromissory;}
+
+    public void setGetLoanPromissory(String getLoanPromissory) {GetLoanPromissory = getLoanPromissory;}
+
+    public String getGetRequestLoan() {return GetRequestLoan;}
+
+    public void setGetRequestLoan(String getRequestLoan) {GetRequestLoan = getRequestLoan;}
 
     public String getSaveStatusHistory() {return SaveStatusHistory;}
 

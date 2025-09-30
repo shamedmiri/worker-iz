@@ -46,11 +46,12 @@ public class ChequeHolderInquiryWorker {
                 .lockDuration(30000)
                 .handler((externalTask, externalTaskService) -> {
                     String sayadId = externalTask.getVariable("sayadId");
+                    String shahabId = externalTask.getVariable("shahabId");
                     String idCode = externalTask.getVariable("Identifier");
                     String customerNumber = externalTask.getVariable("customerNumber");
 
                     try {
-                        Map<String, Object> chequeResponse = apiServiceHolder.callUserApi(sayadId, idCode);
+                        Map<String, Object> chequeResponse = apiServiceHolder.callUserApi(sayadId, shahabId,idCode);
                         int chequeStatus = (int) chequeResponse.get("statusCode");
 
                         if (chequeStatus != 200 && chequeStatus != 201) {
@@ -74,7 +75,7 @@ public class ChequeHolderInquiryWorker {
                         if (customerStatus == 200 || customerStatus == 201) {
                             SpinJsonNode customerJson = Spin.JSON(customerResponse.get("Output"));
                             String Identifier= customerJson.prop("Customer").prop("NationalId").stringValue();
-                            String shahabId= customerJson.prop("Customer").prop("ShahabCode").stringValue();
+                             shahabId= customerJson.prop("Customer").prop("ShahabCode").stringValue();
                             String fullName= customerJson.prop("Customer").prop("FirstName").stringValue()+" "+
                                     customerJson.prop("Customer").prop("LastName").stringValue();
 

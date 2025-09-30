@@ -4,8 +4,10 @@ server:
 api:
   urls:
     TransfersChain: https://coreservicebus.izbank.ir/services/Pichak/TransfersChain
-    chequeHolderInquiry: https://coreservicebus.izbank.ir/services/Pichak/ChequeHolderInquiry
-    chequeIssuerInquiry: https://coreservicebus.izbank.ir/services/Pichak/ChequeIssuerInquiry
+   # chequeHolderInquiry: https://coreservicebus.izbank.ir/services/Pichak/ChequeHolderInquiry
+    chequeHolderInquiry: https://iws.izbank.ir/cheque/pichak/HolderInquiry
+   # chequeIssuerInquiry: https://coreservicebus.izbank.ir/services/Pichak/ChequeIssuerInquiry
+    chequeIssuerInquiry: https://iws.izbank.ir/cheque/pichak/IssuerInquiry
     camunda: https://ouomnibpms.izbank.ir/engine-rest
     deactivateHamoon: https://coreservicebus.izbank.ir/services/Pichak/Chakad
     getCustomerInfo: https://coreservicebus.izbank.ir/services/Customer/GetCustomerByCustomerNumberFromReport?customerNumber=
@@ -31,6 +33,10 @@ api:
     SaveRequestGuarantors: https://iws.izbank.ir/loan/request/SaveRequestGuarantors?RequestGuarantors=
     updatesignedcontract: https://iws.izbank.ir/loan/request/updatesignedcontract
     SaveStatusHistory: https://iws.izbank.ir/db/request/SaveStatusHistory
+    GetRequestLoan: https://iws.izbank.ir/loan/request/GetRequest
+    GetLoanPromissory: https://coreservicebus.izbank.ir/DigitalBranch/GetLoanPromissory
+    SanaInquiry: https://iws.izbank.ir/inquiry/sana/SanaInquiry
+
     #camunda: http://host.docker.internal:8081/engine-rest
 
 errors:
