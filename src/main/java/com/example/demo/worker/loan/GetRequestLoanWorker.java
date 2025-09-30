@@ -3,7 +3,6 @@ package com.example.demo.worker.loan;
 import com.example.demo.config.ApiUrlsProperties;
 import com.example.demo.error.ErrorMessagesProperties;
 import com.example.demo.service.loan.GetRequestLoanService;
-import com.example.demo.service.loan.SaveRequestGuarantorsService;
 import jakarta.annotation.PostConstruct;
 import org.camunda.bpm.client.ExternalTaskClient;
 import org.camunda.spin.Spin;
