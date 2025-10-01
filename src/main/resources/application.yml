@@ -36,6 +36,8 @@ api:
     GetRequestLoan: https://iws.izbank.ir/loan/request/GetRequest
     GetLoanPromissory: https://coreservicebus.izbank.ir/DigitalBranch/GetLoanPromissory
     SanaInquiry: https://iws.izbank.ir/inquiry/sana/SanaInquiry
+    SaveCloseDepositRequest: https://coreservicebus.izbank.ir/services/DigitalBranch/SaveCloseDepositRequest
+
 
     #camunda: http://host.docker.internal:8081/engine-rest
 

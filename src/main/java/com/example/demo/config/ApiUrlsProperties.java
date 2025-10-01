@@ -33,34 +33,71 @@ public class ApiUrlsProperties {
     private String GetRequestLoan;
     private String GetLoanPromissory;
     private String SanaInquiry;
+    private String SaveCloseDepositRequest;
 
-    public String getSanaInquiry() {return SanaInquiry;}
+    public String getSaveCloseDepositRequest() {
+        return SaveCloseDepositRequest;
+    }
 
-    public void setSanaInquiry(String sanaInquiry) {SanaInquiry = sanaInquiry;}
+    public void setSaveCloseDepositRequest(String saveCloseDepositRequest) {
+        SaveCloseDepositRequest = saveCloseDepositRequest;
+    }
 
-    public String getGetLoanPromissory() {return GetLoanPromissory;}
+    public String getSanaInquiry() {
+        return SanaInquiry;
+    }
 
-    public void setGetLoanPromissory(String getLoanPromissory) {GetLoanPromissory = getLoanPromissory;}
+    public void setSanaInquiry(String sanaInquiry) {
+        SanaInquiry = sanaInquiry;
+    }
 
-    public String getGetRequestLoan() {return GetRequestLoan;}
+    public String getGetLoanPromissory() {
+        return GetLoanPromissory;
+    }
 
-    public void setGetRequestLoan(String getRequestLoan) {GetRequestLoan = getRequestLoan;}
+    public void setGetLoanPromissory(String getLoanPromissory) {
+        GetLoanPromissory = getLoanPromissory;
+    }
 
-    public String getSaveStatusHistory() {return SaveStatusHistory;}
+    public String getGetRequestLoan() {
+        return GetRequestLoan;
+    }
 
-    public void setSaveStatusHistory(String saveStatusHistory) {SaveStatusHistory = saveStatusHistory;}
+    public void setGetRequestLoan(String getRequestLoan) {
+        GetRequestLoan = getRequestLoan;
+    }
 
-    public String getUpdatesignedcontract() {return updatesignedcontract;}
+    public String getSaveStatusHistory() {
+        return SaveStatusHistory;
+    }
 
-    public void setUpdatesignedcontract(String updatesignedcontract) {this.updatesignedcontract = updatesignedcontract;}
+    public void setSaveStatusHistory(String saveStatusHistory) {
+        SaveStatusHistory = saveStatusHistory;
+    }
 
-    public String getSaveRequestGuarantors() {return SaveRequestGuarantors;}
+    public String getUpdatesignedcontract() {
+        return updatesignedcontract;
+    }
 
-    public void setSaveRequestGuarantors(String saveRequestGuarantors) {SaveRequestGuarantors = saveRequestGuarantors;}
+    public void setUpdatesignedcontract(String updatesignedcontract) {
+        this.updatesignedcontract = updatesignedcontract;
+    }
 
-    public String getRequestGetPlanDocuments() { return requestGetPlanDocuments; }
+    public String getSaveRequestGuarantors() {
+        return SaveRequestGuarantors;
+    }
 
-    public void setRequestGetPlanDocuments(String requestGetPlanDocuments) { this.requestGetPlanDocuments = requestGetPlanDocuments; }
+    public void setSaveRequestGuarantors(String saveRequestGuarantors) {
+        SaveRequestGuarantors = saveRequestGuarantors;
+    }
+
+    public String getRequestGetPlanDocuments() {
+        return requestGetPlanDocuments;
+    }
+
+    public void setRequestGetPlanDocuments(String requestGetPlanDocuments) {
+        this.requestGetPlanDocuments = requestGetPlanDocuments;
+    }
 
     public String getSendSMS() {
         return sendSMS;
@@ -70,13 +107,21 @@ public class ApiUrlsProperties {
         this.sendSMS = sendSMS;
     }
 
-    public String getRequestGetPlanDetail() {return requestGetPlanDetail;}
+    public String getRequestGetPlanDetail() {
+        return requestGetPlanDetail;
+    }
 
-    public void setRequestGetPlanDetail(String requestGetPlanDetail) {this.requestGetPlanDetail = requestGetPlanDetail;}
+    public void setRequestGetPlanDetail(String requestGetPlanDetail) {
+        this.requestGetPlanDetail = requestGetPlanDetail;
+    }
 
-    public String getSaverequestLoan() {return saverequestLoan;}
+    public String getSaverequestLoan() {
+        return saverequestLoan;
+    }
 
-    public void setSaverequestLoan(String saverequestLoan) {this.saverequestLoan = saverequestLoan;}
+    public void setSaverequestLoan(String saverequestLoan) {
+        this.saverequestLoan = saverequestLoan;
+    }
 
     public String getSaverequestCheque() {
         return saverequestCheque;
