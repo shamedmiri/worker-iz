@@ -37,7 +37,10 @@ api:
     GetLoanPromissory: https://coreservicebus.izbank.ir/DigitalBranch/GetLoanPromissory
     SanaInquiry: https://iws.izbank.ir/inquiry/sana/SanaInquiry
     SaveCloseDepositRequest: https://coreservicebus.izbank.ir/services/DigitalBranch/SaveCloseDepositRequest
-
+    ibanToDeposit: https://apigwp.izbank.ir/private/general-services/v1/ibanToDeposit
+    depositToIban: https://apigwp.izbank.ir/private/general-services/v1/depositToIban
+    cardToIban: https://apigwp.izbank.ir/private/general-services/v1/cardToIban
+    otherBanksIbanInfo: https://apigwp.izbank.ir/private/general-services/v1/otherBanksIbanInfo
 
     #camunda: http://host.docker.internal:8081/engine-rest
 

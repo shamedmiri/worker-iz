@@ -34,6 +34,42 @@ public class ApiUrlsProperties {
     private String GetLoanPromissory;
     private String SanaInquiry;
     private String SaveCloseDepositRequest;
+    private String ibanToDeposit;
+    private String depositToIban;
+    private String cardToIban;
+    private String otherBanksIbanInfo;
+
+    public String getIbanToDeposit() {
+        return ibanToDeposit;
+    }
+
+    public void setIbanToDeposit(String ibanToDeposit) {
+        this.ibanToDeposit = ibanToDeposit;
+    }
+
+    public String getDepositToIban() {
+        return depositToIban;
+    }
+
+    public void setDepositToIban(String depositToIban) {
+        this.depositToIban = depositToIban;
+    }
+
+    public String getCardToIban() {
+        return cardToIban;
+    }
+
+    public void setCardToIban(String cardToIban) {
+        this.cardToIban = cardToIban;
+    }
+
+    public String getOtherBanksIbanInfo() {
+        return otherBanksIbanInfo;
+    }
+
+    public void setOtherBanksIbanInfo(String otherBanksIbanInfo) {
+        this.otherBanksIbanInfo = otherBanksIbanInfo;
+    }
 
     public String getSaveCloseDepositRequest() {
         return SaveCloseDepositRequest;
