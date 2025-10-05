@@ -3,6 +3,7 @@ package com.example.demo.worker.loan;
 import com.example.demo.config.ApiUrlsProperties;
 import com.example.demo.error.ErrorMessagesProperties;
 import com.example.demo.service.loan.RequestGetPlanDetail;
+import com.example.demo.service.loan.RequestGetPlanDocumentsService;
 import jakarta.annotation.PostConstruct;
 import org.camunda.bpm.client.ExternalTaskClient;
 import org.camunda.spin.Spin;
@@ -23,9 +24,9 @@ public class RequestGetPlanDetailWorker {
     private ErrorMessagesProperties errorMessages;
 
     private final ApiUrlsProperties properties;
-    private final RequestGetPlanDocuments apiService;
+    private final RequestGetPlanDocumentsService apiService;
 
-    public RequestGetPlanDetailWorker(ApiUrlsProperties properties, RequestGetPlanDetail apiService) {
+    public RequestGetPlanDetailWorker(ApiUrlsProperties properties, RequestGetPlanDocumentsService apiService) {
         this.properties = properties;
         this.apiService = apiService;
     }
@@ -44,7 +45,7 @@ public class RequestGetPlanDetailWorker {
                     String customerNumber = externalTask.getVariable("customerNumber");
 
                     try {
-                        Map<String, Object> responseMap = apiService.callUserApi(planId, customerNumber );
+                        Map<String, Object> responseMap = apiService.callUserApi(planId );
                         int statusCode = (int) responseMap.get("statusCode");
 
                         if (statusCode == 200 || statusCode == 201) {

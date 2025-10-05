@@ -51,7 +51,7 @@ public class SaveStatusHistoryWorker {
 
                         if (statusCode == 200 || statusCode == 201) {
 
-                            (externalTaskService, externalTask, responseMap);
+                            externalTaskService.handleBpmnError(externalTask, "Error_END", errorMessages.get("ERROR_SERVICE"), responseMap);
                         } else {
                             externalTaskService.handleBpmnError(externalTask, "Error_END", errorMessages.get("ERROR_SERVICE"), responseMap);
                         }

@@ -30,10 +30,10 @@ public class GetCustomerInfoByNationalCodeWorker {
                 .baseUrl(properties.getCamunda())
                 .asyncResponseTimeout(20000)
                 .build();
-        client.subscribe("getCustomerInfoByNationalCodeWorker") // تاپیک جدید در BPMN
+        client.subscribe("getCustomerInfoByNationalCodeWorkerLocal") // تاپیک جدید در BPMN
                 .lockDuration(30000)
                 .handler((externalTask, externalTaskService) -> {
-                    String nationalCode = externalTask.getVariable("AgentNationalCode");
+                    String nationalCode = externalTask.getVariable("nationalCode");
                     try {
                         Map<String, Object> variables = apiService.callUserApi(nationalCode);
                         int statusCode = (int) variables.get("statusCode");

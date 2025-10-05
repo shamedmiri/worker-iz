@@ -34,7 +34,7 @@ public class ChequeInquiryWorker {
                 .baseUrl(properties.getCamunda())
                 .asyncResponseTimeout(20000)
                 .build();
-        String chequeInquiryWorker = "chequeInquiryWorker";
+        String chequeInquiryWorker = "chequeInquiryWorkerLocal";
         client.subscribe(chequeInquiryWorker) // تاپیک جدید در BPMN
                 .lockDuration(30000)
                 .handler((externalTask, externalTaskService) -> {
@@ -42,22 +42,24 @@ public class ChequeInquiryWorker {
                     String idCode = externalTask.getVariable("Identifier");
                     String shahabId = externalTask.getVariable("shahabId");
                     try {
-                        Map<String, Object> variables = apiServiceHolder.callUserApi(sayadId, idCode);
+                        Map<String, Object> variables = apiServiceHolder.callUserApi(sayadId, idCode,shahabId);
                         int statusCode = (int) variables.get("statusCode");
                         if (statusCode == 200 || statusCode == 201) {
                             SpinJsonNode jsonNode = Spin.JSON((variables.get("Output")));
                             String responseCode = jsonNode.prop("ResponseCode").toString();
                             if (responseCode.equals("100")) {
                                 Map<String, Object> result = new HashMap<>();
-                                result.put("HoldertList", jsonNode.prop("Holders").toString());
-                                result.put("SayadId", jsonNode.prop("SayadId").toString());
-                                result.put("SerialNumber", jsonNode.prop("SerialNumber").toString());
-                                result.put("SeriesNumber", jsonNode.prop("SeriesNumber").toString());
-                                result.put("Amount", jsonNode.prop("Amount").toString());
-                                result.put("DueDate", jsonNode.prop("DueDate").toString());
-                                result.put("Description", jsonNode.prop("Description").toString());
-                                result.put("BlockStatus", jsonNode.prop("BlockStatus").toString());
-                                result.put("ChequeStatus", jsonNode.prop("ChequeStatus").toString());
+                                SpinJsonNode resultInquiry = jsonNode.prop("InquiryResult");
+                                result.put("SignersList", resultInquiry.prop("Signers").toString());
+                                result.put("HoldersList", resultInquiry.prop("Holders").toString());
+                                result.put("SayadId", resultInquiry.prop("SayadId").toString());
+                                result.put("SerialNumber", resultInquiry.prop("SerialNumber").toString());
+                                result.put("SeriesNumber", resultInquiry.prop("SeriesNumber").toString());
+                                result.put("Amount", resultInquiry.prop("Amount").toString());
+                                result.put("DueDate", resultInquiry.prop("DueDate").toString());
+                                result.put("Description", resultInquiry.prop("Description").toString());
+                                result.put("BlockStatus", resultInquiry.prop("BlockStatus").toString());
+                                result.put("ChequeStatus", resultInquiry.prop("ChequeStatus").toString());
                                 externalTaskService.complete(externalTask, result);
                             } else if (responseCode.equals("104")) {
                                 Map<String, Object> variablesIssuer = apiServiceIssuesr.callUserApi(sayadId, idCode, shahabId);
