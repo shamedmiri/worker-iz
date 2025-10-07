@@ -37,7 +37,7 @@ api:
     GetLoanPromissory: https://coreservicebus.izbank.ir/DigitalBranch/GetLoanPromissory
     SanaInquiry: https://iws.izbank.ir/inquiry/sana/SanaInquiry
     SaveCloseDepositRequest: https://coreservicebus.izbank.ir/services/DigitalBranch/SaveCloseDepositRequest
-    ibanToDeposit: https://iws.izbank.ir/general-services/inquiry/GetDepositInfoByIBAN
+    ibanToDeposit: https://iws.izbank.ir/Deposit/inquiry/GetDepositInfoByIBAN
     depositToIban: https://iws.izbank.ir/Deposit/inquiry/getdepositinfobydepositnumber
     cardToIban:  https://coreservicebus.izbank.ir/general/getshebafromcardnumber
     otherBanksIbanInfo: https://apigwp.izbank.ir/private/general-services/v1/otherBanksIbanInfo
