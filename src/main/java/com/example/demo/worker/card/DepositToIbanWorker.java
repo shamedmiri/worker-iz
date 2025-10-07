@@ -37,13 +37,15 @@ public class DepositToIbanWorker {
         client.subscribe(TOPIC_NAME)
                 .lockDuration(30000)
                 .handler((externalTask, externalTaskService) -> {
-                    String clientAddress = externalTask.getVariable("");
-                    String acceptorCode = externalTask.getVariable("");
-                    String depositNumber = externalTask.getVariable("");
-
+                    String depositNumber = externalTask.getVariable("depositNumber");
+                    String[] parts = depositNumber.split("-");
+                    String branchCode=parts[0];
+                    String depositType=parts[1];
+                    String customerNumber=parts[2];
+                    String serialNumber=parts[3];
 
                     try {
-                        Map<String, Object> responseMap = apiService.callUserApi(clientAddress, acceptorCode, depositNumber);
+                        Map<String, Object> responseMap = apiService.callUserApi(branchCode, depositType,customerNumber,serialNumber, depositNumber);
                         int statusCode = (int) responseMap.get("statusCode");
 
                         if (statusCode == 200 || statusCode == 201) {
@@ -67,8 +69,9 @@ public class DepositToIbanWorker {
         String responseCode = jsonNode.prop("ResponseCode").toString();
 
         if (SUCCESS_CODE.equals(responseCode)) {
+            String  ibanNumber = jsonNode.prop("Deposit").prop("IBAN").stringValue();
             Map<String, Object> variables = Map.of(
-                    "resultMessage", "درخواست با موفقیت ثبت گردبد"
+                    "iBanId", ibanNumber
             );
             externalTaskService.complete(externalTask, variables);
         } else {

@@ -38,7 +38,7 @@ api:
     SanaInquiry: https://iws.izbank.ir/inquiry/sana/SanaInquiry
     SaveCloseDepositRequest: https://coreservicebus.izbank.ir/services/DigitalBranch/SaveCloseDepositRequest
     ibanToDeposit: https://apigwp.izbank.ir/private/general-services/v1/ibanToDeposit
-    depositToIban: https://apigwp.izbank.ir/private/general-services/v1/depositToIban
+    depositToIban: https://iws.izbank.ir/Deposit/inquiry/getdepositinfobydepositnumber
     cardToIban: https://apigwp.izbank.ir/private/general-services/v1/cardToIban
     otherBanksIbanInfo: https://apigwp.izbank.ir/private/general-services/v1/otherBanksIbanInfo
     GetProcessServices: https://coreservicebus.izbank.ir/services/BPMS/GetProcessServices?processName=

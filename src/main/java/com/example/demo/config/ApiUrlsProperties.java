@@ -38,6 +38,15 @@ public class ApiUrlsProperties {
     private String depositToIban;
     private String cardToIban;
     private String otherBanksIbanInfo;
+    private String GetProcessServices;
+
+    public String getGetProcessServices() {
+        return GetProcessServices;
+    }
+
+    public void setGetProcessServices(String getProcessServices) {
+        GetProcessServices = getProcessServices;
+    }
 
     public String getIbanToDeposit() {
         return ibanToDeposit;

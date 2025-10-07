@@ -26,26 +26,18 @@ public class DepositToIbanService {
         this.objectMapper = new ObjectMapper();
     }
 
-    public Map<String, Object> callUserApi(String clientAddress, String acceptorCode, String depositNumber) throws Exception {
-        return callApi(urls.getDepositToIban(), clientAddress , acceptorCode,depositNumber);
+    public Map<String, Object> callUserApi(String branchCode, String depositType, String customerNumber,String serialNumber, String depositNumber) throws Exception {
+        return callApi(urls.getDepositToIban(), branchCode , depositType,customerNumber,serialNumber,depositNumber);
     }
 
-    private Map<String, Object> callApi(String url, String clientAddress, String acceptorCode,String depositNumber) throws Exception {
+    private Map<String, Object> callApi(String url, String branchCode, String depositType,String customerNumber,String serialNumber,String depositNumber) throws Exception {
 
-
-        Map<String, Object> requestMap = new HashMap<>();
-        requestMap.put("clientAddress", "");
-        requestMap.put("acceptorCode", "");
-        requestMap.put("depositNumber", "");
-
-        String jsonRequest = objectMapper.writeValueAsString(requestMap);
         HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create(url))
-                .header("Accept", "application/json")
+                .uri(URI.create(url + "?BranchCode="+branchCode+"&DepositType="+depositType
+                +"&CustomerNumber="+customerNumber+"&Serial="+serialNumber))
                 .header("Content-Type", "application/json")
-                .POST(HttpRequest.BodyPublishers.ofString(jsonRequest))
+                .GET()
                 .build();
-
         HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
         Map<String, Object> result = new HashMap<>();
         int statusCode = response.statusCode();
