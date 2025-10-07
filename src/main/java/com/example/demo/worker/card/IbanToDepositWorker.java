@@ -37,14 +37,13 @@ public class IbanToDepositWorker {
         client.subscribe(TOPIC_NAME)
                 .lockDuration(30000)
                 .handler((externalTask, externalTaskService) -> {
-                    String clientAddress = externalTask.getVariable("");
-                    String acceptorCode = externalTask.getVariable("");
+                    String sheba = externalTask.getVariable("");
                     String iban = externalTask.getVariable("");
 
 
 
                     try {
-                        Map<String, Object> responseMap = apiService.callUserApi(clientAddress,acceptorCode,iban);
+                        Map<String, Object> responseMap = apiService.callUserApi(sheba,iban);
                         int statusCode = (int) responseMap.get("statusCode");
 
                         if (statusCode == 200 || statusCode == 201) {

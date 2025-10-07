@@ -11,6 +11,7 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.util.HashMap;
 import java.util.Map;
+
 @org.springframework.stereotype.Service
 public class IbanToDepositService {
     @Autowired
@@ -26,16 +27,15 @@ public class IbanToDepositService {
         this.objectMapper = new ObjectMapper();
     }
 
-    public Map<String, Object> callUserApi(String clientAddress, String acceptorCode, String iban) throws Exception {
-        return callApi(urls.getIbanToDeposit(), clientAddress , acceptorCode,iban);
+    public Map<String, Object> callUserApi(String sheba, String iban) throws Exception {
+        return callApi(urls.getIbanToDeposit(), sheba, iban);
     }
 
-    private Map<String, Object> callApi(String url, String clientAddress, String acceptorCode,String iban) throws Exception {
+    private Map<String, Object> callApi(String url, String sheba, String iban) throws Exception {
 
 
         Map<String, Object> requestMap = new HashMap<>();
-        requestMap.put("clientAddress", "");
-        requestMap.put("acceptorCode", "");
+        requestMap.put("sheba", "");
         requestMap.put("iban", "");
 
         String jsonRequest = objectMapper.writeValueAsString(requestMap);

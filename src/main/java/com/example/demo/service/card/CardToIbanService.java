@@ -26,17 +26,15 @@ public class CardToIbanService {
         this.objectMapper = new ObjectMapper();
     }
 
-    public Map<String, Object> callUserApi(String clientAddress, String acceptorCode, String pan) throws Exception {
-        return callApi(urls.getCardToIban(), clientAddress , acceptorCode,pan);
+    public Map<String, Object> callUserApi(String card) throws Exception {
+        return callApi(urls.getCardToIban(), card );
     }
 
-    private Map<String, Object> callApi(String url, String clientAddress, String acceptorCode,String pan) throws Exception {
+    private Map<String, Object> callApi(String url, String card) throws Exception {
 
 
         Map<String, Object> requestMap = new HashMap<>();
-        requestMap.put("clientAddress", "");
-        requestMap.put("acceptorCode", "");
-        requestMap.put("pan", "");
+        requestMap.put("card", "");
 
         String jsonRequest = objectMapper.writeValueAsString(requestMap);
         HttpRequest request = HttpRequest.newBuilder()

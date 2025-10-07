@@ -37,11 +37,9 @@ public class CardToIbanWorker {
         client.subscribe(TOPIC_NAME)
                 .lockDuration(30000)
                 .handler((externalTask, externalTaskService) -> {
-                    String clientAddress = externalTask.getVariable("");
-                    String acceptorCode = externalTask.getVariable("");
-                    String pan = externalTask.getVariable("");
+                    String card = externalTask.getVariable("");
                     try {
-                        Map<String, Object> responseMap = apiService.callUserApi(clientAddress, acceptorCode, pan);
+                        Map<String, Object> responseMap = apiService.callUserApi(card);
                         int statusCode = (int) responseMap.get("statusCode");
 
                         if (statusCode == 200 || statusCode == 201) {
