@@ -68,8 +68,17 @@ public class OtherBanksIbanInfoWorker {
         String responseCode = jsonNode.prop("ResponseCode").toString();
 
         if (SUCCESS_CODE.equals(responseCode)) {
+            String  ibanNumber = jsonNode.prop("Deposit").prop("IBAN").stringValue();
+            String  bankName = "ایران زمین";
+            String  firstName = jsonNode.prop("Deposit").prop("firstName").stringValue();
+            String  lastName = jsonNode.prop("Deposit").prop("lastName").stringValue();
+            String fullName = firstName + " " + lastName;
+            String  depositNumber = jsonNode.prop("Deposit").prop("DepositNumber").stringValue();
             Map<String, Object> variables = Map.of(
-                    "resultMessage", "درخواست با موفقیت ثبت گردبد"
+                    "iBanId", ibanNumber,
+                    "Name", fullName,
+                    "BankName", bankName,
+                    "AccountNumber", depositNumber
             );
             externalTaskService.complete(externalTask, variables);
         } else {

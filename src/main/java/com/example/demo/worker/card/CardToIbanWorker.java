@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.Map;
+
 @Component
 public class CardToIbanWorker {
     private static final String TOPIC_NAME = "CardToIbanWorker";
@@ -63,8 +64,13 @@ public class CardToIbanWorker {
         String responseCode = jsonNode.prop("ResponseCode").toString();
 
         if (SUCCESS_CODE.equals(responseCode)) {
+            String ibanNumber = jsonNode.prop("Deposit").prop("IBAN").stringValue();
+            String bankName = "ایران زمین";
+            String cardNumber = jsonNode.prop("Deposit").prop("cardNumber").stringValue();
             Map<String, Object> variables = Map.of(
-                    "resultMessage", "درخواست با موفقیت ثبت گردبد"
+                    "iBanId", ibanNumber,
+                    "BankName", bankName,
+                    "CardNumber", cardNumber
             );
             externalTaskService.complete(externalTask, variables);
         } else {
