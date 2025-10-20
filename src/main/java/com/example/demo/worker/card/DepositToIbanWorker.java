@@ -70,8 +70,14 @@ public class DepositToIbanWorker {
 
         if (SUCCESS_CODE.equals(responseCode)) {
             String  ibanNumber = jsonNode.prop("Deposit").prop("IBAN").stringValue();
+            String  bankName = "ایران زمین";
+            String  title = jsonNode.prop("Deposit").prop("Title").stringValue();
+            String  depositNumber = jsonNode.prop("Deposit").prop("DepositNumber").stringValue();
             Map<String, Object> variables = Map.of(
-                    "iBanId", ibanNumber
+                    "iBanId", ibanNumber,
+                    "Name", title,
+                    "BankName", bankName,
+                    "AccountNumber", depositNumber
             );
             externalTaskService.complete(externalTask, variables);
         } else {
