@@ -33,15 +33,11 @@ public class CardToIbanService {
     private Map<String, Object> callApi(String url, String card) throws Exception {
 
 
-        Map<String, Object> requestMap = new HashMap<>();
-        requestMap.put("card", "");
 
-        String jsonRequest = objectMapper.writeValueAsString(requestMap);
         HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create(url))
-                .header("Accept", "application/json")
+                .uri(URI.create(url+card))
                 .header("Content-Type", "application/json")
-                .POST(HttpRequest.BodyPublishers.ofString(jsonRequest))
+                .POST(HttpRequest.BodyPublishers.noBody())
                 .build();
 
         HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());

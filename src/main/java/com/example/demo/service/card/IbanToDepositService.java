@@ -27,23 +27,17 @@ public class IbanToDepositService {
         this.objectMapper = new ObjectMapper();
     }
 
-    public Map<String, Object> callUserApi(String sheba, String iban) throws Exception {
-        return callApi(urls.getIbanToDeposit(), sheba, iban);
+    public Map<String, Object> callUserApi(String iban) throws Exception {
+        return callApi(urls.getIbanToDeposit(), iban);
     }
 
-    private Map<String, Object> callApi(String url, String sheba, String iban) throws Exception {
+    private Map<String, Object> callApi(String url, String iban) throws Exception {
 
 
-        Map<String, Object> requestMap = new HashMap<>();
-        requestMap.put("sheba", "");
-        requestMap.put("iban", "");
-
-        String jsonRequest = objectMapper.writeValueAsString(requestMap);
         HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create(url))
-                .header("Accept", "application/json")
+                .uri(URI.create(url + "?iban=IR"+iban))
                 .header("Content-Type", "application/json")
-                .POST(HttpRequest.BodyPublishers.ofString(jsonRequest))
+                .GET()
                 .build();
 
         HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());

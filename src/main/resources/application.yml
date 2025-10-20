@@ -39,9 +39,10 @@ api:
     SaveCloseDepositRequest: https://coreservicebus.izbank.ir/services/DigitalBranch/SaveCloseDepositRequest
     ibanToDeposit: https://iws.izbank.ir/Deposit/inquiry/GetDepositInfoByIBAN
     depositToIban: https://iws.izbank.ir/Deposit/inquiry/getdepositinfobydepositnumber
-    cardToIban:  https://coreservicebus.izbank.ir/general/getshebafromcardnumber
+    cardToIban:  https://coreservicebus.izbank.ir/services/general/getshebafromcardnumber?card=
     otherBanksIbanInfo: https://apigwp.izbank.ir/private/general-services/v1/otherBanksIbanInfo
     GetProcessServices: https://coreservicebus.izbank.ir/services/BPMS/GetProcessServices?processName=
+
     #camunda: http://host.docker.internal:8081/engine-rest
 
 errors:

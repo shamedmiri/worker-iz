@@ -38,7 +38,7 @@ public class CardToIbanWorker {
         client.subscribe(TOPIC_NAME)
                 .lockDuration(30000)
                 .handler((externalTask, externalTaskService) -> {
-                    String card = externalTask.getVariable("");
+                    String card = externalTask.getVariable("card");
                     try {
                         Map<String, Object> responseMap = apiService.callUserApi(card);
                         int statusCode = (int) responseMap.get("statusCode");

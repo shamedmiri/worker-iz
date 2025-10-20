@@ -43,7 +43,7 @@ public class IbanToDepositWorker {
 
 
                     try {
-                        Map<String, Object> responseMap = apiService.callUserApi(sheba,iban);
+                        Map<String, Object> responseMap = apiService.callUserApi(iban);
                         int statusCode = (int) responseMap.get("statusCode");
 
                         if (statusCode == 200 || statusCode == 201) {
@@ -67,20 +67,8 @@ public class IbanToDepositWorker {
         String responseCode = jsonNode.prop("ResponseCode").toString();
 
         if (SUCCESS_CODE.equals(responseCode)) {
-            String  ibanNumber = jsonNode.prop("Deposit").prop("IBAN").stringValue();
-            String  bankName = "ایران زمین";
-            String  title = jsonNode.prop("Deposit").prop("Title").stringValue();
-            String  depositNumber = jsonNode.prop("Deposit").prop("DepositNumber").stringValue();
-            String branchName = jsonNode.prop("Deposit").prop("Deposit").prop("BranchName").stringValue();
-            String customerNumber = jsonNode.prop("Deposit").prop("Deposit").prop("CustomerNumber").stringValue();
-
             Map<String, Object> variables = Map.of(
-                    "iBanId", ibanNumber,
-                    "Name", title,
-                    "BankName", bankName,
-                    "AccountNumber", depositNumber,
-                    "BranchName", branchName,
-                    "CustomerNumber", customerNumber
+                    "resultMessage", "درخواست با موفقیت ثبت گردبد"
             );
             externalTaskService.complete(externalTask, variables);
         } else {
