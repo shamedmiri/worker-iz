@@ -37,7 +37,7 @@ public class IbanToDepositWorker {
         client.subscribe(TOPIC_NAME)
                 .lockDuration(30000)
                 .handler((externalTask, externalTaskService) -> {
-                    String iban = externalTask.getVariable("");
+                    String iban = externalTask.getVariable("iban");
 
 
 
@@ -70,16 +70,13 @@ public class IbanToDepositWorker {
             String  bankName = "ایران زمین";
             String  title = jsonNode.prop("Deposit").prop("Title").stringValue();
             String  depositNumber = jsonNode.prop("Deposit").prop("DepositNumber").stringValue();
-            String  branchName = jsonNode.prop("Deposit").prop("BranchName").stringValue();
             String  customerNumber = jsonNode.prop("Deposit").prop("CustomerNumber").stringValue();
 
             Map<String, Object> variables = Map.of(
                     "iBanId", ibanNumber,
                     "Name", title,
                     "BankName", bankName,
-                    "AccountNumber", depositNumber,
-                    "BranchName", branchName,
-                    "CustomerNumber", customerNumber
+                    "AccountNumber", depositNumber
             );
             externalTaskService.complete(externalTask, variables);
         } else {
