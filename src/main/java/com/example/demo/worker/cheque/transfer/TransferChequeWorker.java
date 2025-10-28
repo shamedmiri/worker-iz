@@ -86,7 +86,10 @@ public class TransferChequeWorker {
         String responseCode = jsonNode.prop("ResponseCode").toString();
 
         if (SUCCESS_CODE.equals(responseCode)) {
+//            boolean responseService=jsonNode.prop("HasError").boolValue();
+
             Map<String, Object> variables = Map.of(
+//                    "errorResponseService",responseService,
                     "outputServiceTransfer", jsonNode
             );
             externalTaskService.complete(externalTask, variables);
